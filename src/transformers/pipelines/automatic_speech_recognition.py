@@ -407,4 +407,5 @@ class AutomaticSpeechRecognitionPipeline(ChunkPipeline):
             output.pop("is_last", None)
             for k, v in output.items():
                 extra[k].append(v)
+        print(model_outputs)
         return {"text": text, **optional, **extra}
