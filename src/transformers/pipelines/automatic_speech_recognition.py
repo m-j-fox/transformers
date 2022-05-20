@@ -337,7 +337,7 @@ class AutomaticSpeechRecognitionPipeline(ChunkPipeline):
     def postprocess(self, model_outputs, decoder_kwargs: Optional[Dict] = None, return_timestamps=None):
         # Optional return types
         optional = {}
-
+        print(model_outputs)
         if return_timestamps and self.type == "seq2seq":
             raise ValueError("We cannot return_timestamps yet on non-ctc models !")
         if return_timestamps == "char" and self.type == "ctc_with_lm":
@@ -407,6 +407,4 @@ class AutomaticSpeechRecognitionPipeline(ChunkPipeline):
             output.pop("is_last", None)
             for k, v in output.items():
                 extra[k].append(v)
-        print(model_outputs)
-        print(items)
-        return {"text": text, "items": items, **optional, **extra}
+        return {"text": text, "extra": extra, **optional}
