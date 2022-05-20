@@ -408,4 +408,5 @@ class AutomaticSpeechRecognitionPipeline(ChunkPipeline):
             for k, v in output.items():
                 extra[k].append(v)
         print(model_outputs)
-        return {"text": text, "items": items, **optional, **extra, **model_outputs}
+        print(items)
+        return {"text": text, "items": items, **optional, **extra}
